@@ -1,0 +1,11 @@
+- debug:
+    msg: "This is reset.yaml"
+
+- name: Umount filesystem
+  ansible.builtin.include_tasks:
+    file: umount.yaml
+  with_items:
+    - /run/netns
+    - /var/lib/kubelet
+  loop_control:
+    loop_var: mounted_fs
